@@ -34,7 +34,7 @@ public class PaymentSituation {
 			factory.setNamespaceAware(true); // never forget this!
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			ByteArrayInputStream is = new ByteArrayInputStream(
-					response.getBytes());
+					response.getBytes("UTF-8"));
 			Document doc = builder.parse(is);
 			XPathFactory xfactory = XPathFactory.newInstance();
 			XPath xpath = xfactory.newXPath();
