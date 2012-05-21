@@ -17,8 +17,13 @@ public class Moip {
 		return new MoipUnico(this);
 	}
 
-	String execute(String body) {
+	public String execute(String body) {
 		return new MoipHttp(env).execute(body);
+	}
+	
+	public PaymentSituation retrieve(String token) {
+		String response = new MoipHttp(env).confirmGet(token);
+		return new PaymentSituation(response);
 	}
 
 }
