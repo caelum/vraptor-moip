@@ -57,8 +57,11 @@ public class PaymentSituation {
 	}
 
 	public boolean isWaiting() {
-		return statuses.contains("EmAnalise")
-				|| statuses.contains("BoletoImpresso");
+		return statuses.contains("EmAnalise");
+	}
+	
+	public boolean isPrinted() {
+		return statuses.contains("BoletoImpresso");
 	}
 
 	public boolean isCancelled() {
