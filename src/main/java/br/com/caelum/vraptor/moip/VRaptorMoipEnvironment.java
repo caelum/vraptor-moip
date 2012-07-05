@@ -37,8 +37,12 @@ public class VRaptorMoipEnvironment implements MoipEnvironment{
 		return env.get("moip.key");
 	}
 
-	public URL getMoipPaymentUrlFor(String token) throws MalformedURLException {
-		return new URL(env.get("moip.payment.return") + token);
+	public URL getMoipPaymentUrlFor(String token) {
+		try {
+			return new URL(env.get("moip.payment.return") + token);
+		} catch (MalformedURLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }

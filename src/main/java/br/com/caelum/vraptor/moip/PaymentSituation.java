@@ -56,7 +56,7 @@ public class PaymentSituation {
 				|| statuses.contains("Autorizado");
 	}
 
-	public boolean isWaiting() {
+	public boolean isUnderAnalysis() {
 		return statuses.contains("EmAnalise");
 	}
 	
