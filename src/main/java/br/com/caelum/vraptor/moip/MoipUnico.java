@@ -14,7 +14,7 @@ public class MoipUnico {
 	private String returnUri;
 	private String identidade;
 	private final Moip moip;
-	
+
 	public MoipUnico(Moip moip) {
 		this.moip = moip;
 	}
@@ -23,7 +23,7 @@ public class MoipUnico {
 		this.descricao = descricao;
 		return this;
 	}
-	
+
 	public String execute() {
 	    String body = "<EnviarInstrucao>\n"+
 	            "<InstrucaoUnica>\n"+
@@ -40,11 +40,13 @@ public class MoipUnico {
 	              "<URLRetorno>" +returnUri+"</URLRetorno>\n"+
 	            "</InstrucaoUnica>\n"+
 	          "</EnviarInstrucao>";
-	        String response = moip.execute(body);
-	        Pattern pattern = Pattern.compile(".*<Token>(.*)</Token>.*");
-	        Matcher matcher = pattern.matcher(response);
-	        matcher.matches();
-	        return matcher.group(1);
+		String response = moip.execute(body);
+		Pattern pattern = Pattern.compile(".*<Token>(.*)</Token>.*");
+		Matcher matcher = pattern.matcher(response);
+		if (matcher.matches()) {
+			return matcher.group(1);
+		}
+		throw new MoipException("Problema ao executar requisicao. Resposta foi:\n" + response);
 	}
 
 	public MoipUnico id(String id) {
